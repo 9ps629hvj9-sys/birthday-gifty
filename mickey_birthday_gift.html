@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday My Love ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; overflow:hidden;
+  font-family:Arial, sans-serif; color:#fff;
+  background:linear-gradient(135deg,#151515,#c90018 55%,#ffd400);
+  display:flex; align-items:center; justify-content:center;
+}
+.bg{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.circle{position:absolute;border-radius:50%;background:#000}
+.circle:before,.circle:after{content:"";position:absolute;background:#000;border-radius:50%}
+.circle:before{width:65%;height:65%;left:-42%;top:-28%}
+.circle:after{width:65%;height:65%;right:-42%;top:-28%}
+.c1{width:90px;height:90px;left:8%;top:12%}.c2{width:65px;height:65px;right:10%;top:20%}
+.c3{width:120px;height:120px;left:15%;bottom:8%}.c4{width:75px;height:75px;right:14%;bottom:12%}
+.card{
+  position:relative;z-index:2;width:min(92%,520px);max-height:92vh;overflow:auto;
+  padding:28px 22px;border-radius:28px;text-align:center;
+  background:rgba(20,20,20,.88);border:3px solid #ffd400;
+  box-shadow:0 0 35px rgba(0,0,0,.5);
+}
+.ears{width:92px;height:92px;border-radius:50%;background:#000;margin:5px auto 20px;position:relative}
+.ears:before,.ears:after{content:"";position:absolute;width:65px;height:65px;background:#000;border-radius:50%;top:-35px}
+.ears:before{left:-32px}.ears:after{right:-32px}
+.ears span{position:absolute;z-index:2;left:15px;right:15px;bottom:0;height:62px;background:#ffd400;border-radius:50% 50% 42% 42%}
+h1{font-size:clamp(30px,8vw,48px);margin:8px 0;color:#ffd400;text-shadow:3px 3px #c90018}
+h2{margin:8px 0 18px;font-size:24px}
+p{line-height:1.6}
+button{
+  border:0;border-radius:999px;padding:14px 24px;margin:8px;
+  font-size:16px;font-weight:bold;cursor:pointer;background:#ffd400;color:#111;
+}
+button:hover{transform:scale(1.05)}
+#gift{font-size:80px;cursor:pointer;animation:bounce 1.3s infinite}
+@keyframes bounce{50%{transform:translateY(-12px)}}
+#message{display:none;margin-top:18px;padding:18px;border-radius:20px;background:#fff;color:#222;text-align:left}
+#message h3{text-align:center;color:#c90018}
+.heart{position:fixed;font-size:22px;animation:float 5s linear forwards;z-index:1}
+@keyframes float{from{transform:translateY(20px);opacity:1}to{transform:translateY(-110vh);opacity:0}}
+.confetti{position:fixed;width:9px;height:14px;top:-20px;z-index:10;animation:fall 3s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+.small{font-size:13px;opacity:.8}
+</style>
+</head>
+<body>
+<div class="bg">
+  <div class="circle c1"></div><div class="circle c2"></div>
+  <div class="circle c3"></div><div class="circle c4"></div>
+</div>
+
+<div class="card">
+  <div class="ears"><span></span></div>
+  <div class="small">A little birthday surprise for you ♡</div>
+  <h1>Happy Birthday!</h1>
+  <h2>My Love ❤️</h2>
+
+  <p>Untuk orang yang paling spesial...</p>
+  <div id="gift" onclick="openGift()">🎁</div>
+  <p><b>Klik kadonya! 🎀</b></p>
+
+  <div id="message">
+    <h3>💌 A Letter For You</h3>
+    <p>
+      Selamat ulang tahun, sayang! ❤️<br><br>
+      Aku berharap di umur barumu ini kamu selalu dikelilingi
+      hal-hal baik, banyak kebahagiaan, dan semua impianmu
+      perlahan menjadi kenyataan.
+    </p>
+    <p>
+      Terima kasih sudah hadir dalam hidupku. Walaupun kita
+      tidak selalu bisa berada di tempat yang sama, aku tetap
+      senang bisa berbagi banyak cerita dan momen denganmu.
+    </p>
+    <p>
+      Aku akan terus mendukungmu dan menyayangimu.
+      Semoga kita bisa membuat lebih banyak kenangan bersama
+      di masa depan. ❤️
+    </p>
+    <p style="text-align:center"><b>Happy Birthday, my love! 🎂❤️</b></p>
+  </div>
+
+  <button onclick="celebrate()">🎉 Celebrate!</button>
+  <button onclick="toggleMusic()">🎵 Music</button>
+</div>
+
+<script>
+let audioCtx, playing=false, timer;
+
+function openGift(){
+  document.getElementById("message").style.display="block";
+  celebrate();
+  document.getElementById("gift").textContent="🎁✨";
+}
+
+function celebrate(){
+  for(let i=0;i<90;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.animationDelay=Math.random()*1.5+"s";
+    c.style.background=["#ffd400","#c90018","#fff","#111"][Math.floor(Math.random()*4)];
+    c.style.transform=`rotate(${Math.random()*360}deg)`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4500);
+  }
+  for(let i=0;i<15;i++){
+    const h=document.createElement("div");
+    h.className="heart"; h.textContent="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.bottom="-30px";
+    h.style.animationDelay=Math.random()*2+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  }
+}
+
+function toggleMusic(){
+  if(!audioCtx){
+    audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+  }
+  playing=!playing;
+  if(!playing){clearInterval(timer);return}
+  const notes=[261.63,329.63,392,523.25,392,329.63];
+  let i=0;
+  timer=setInterval(()=>{
+    const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+    o.frequency.value=notes[i++%notes.length];
+    o.type="sine"; g.gain.value=.045;
+    o.connect(g);g.connect(audioCtx.destination);
+    o.start();o.stop(audioCtx.currentTime+.22);
+  },280);
+}
+</script>
+</body>
+</html>
